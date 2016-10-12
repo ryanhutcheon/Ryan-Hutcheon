@@ -1,0 +1,26 @@
+int button = 2; //Set button pin
+int led = 9; //Set led pin
+int brightness = 0; //Set initial led brightness
+int fadeAmount = 5; //Set fade amount
+
+//Set up pin modes
+void setup() {
+  pinMode(button, INPUT);
+  pinMode(led, OUTPUT);
+}
+
+//Code to make led fade in and out on button press
+void loop() {
+  if (digitalRead(button) == HIGH) {
+    analogWrite(led, brightness);
+    brightness = brightness + fadeAmount;
+    if (brightness <= 0 || brightness >= 255) {
+      fadeAmount = -fadeAmount;
+    }
+    delay(50);
+  } else {
+    if (digitalRead(button) == LOW) {
+      digitalWrite(led, LOW);
+    }
+  }
+}
