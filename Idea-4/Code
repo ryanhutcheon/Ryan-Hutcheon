@@ -1,0 +1,33 @@
+#include <Servo.h>
+const int button1 = 2;
+const int button2 = 4;
+int buttonState = 0;
+int buttonState2 = 0;
+Servo myservo; //create a servo object to control a servo
+int position = 0;
+int led = 13;
+
+void setup() {
+  pinMode(button1, INPUT);
+  pinMode(button2, INPUT);
+  pinMode(led, OUTPUT);
+  myservo.attach(9);
+}
+
+void loop(){
+  buttonState = digitalRead(button1);
+  buttonState2 = digitalRead(button2);
+    if(buttonState == HIGH && position < 180){
+      digitalWrite(led, HIGH);
+      myservo.write(position++);
+      delay(5); 
+    }
+    
+    if(buttonState2 == HIGH && position > 3){
+      digitalWrite(led, LOW);
+      myservo.write(position--);
+      delay(5);
+    }
+  
+}
+
