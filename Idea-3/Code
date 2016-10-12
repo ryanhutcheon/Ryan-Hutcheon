@@ -1,0 +1,18 @@
+#include <Servo.h> //Loads the Library file to tell the Arduino
+                   //how to use the SERVO
+Servo myservo; //create a servo object to control a servo
+int potpin = 0; //analog pin used to connect potentionmeter
+int val;
+
+void setup(){
+  myservo.attach(9); //attaches the servo on pin 9 to servo object
+}
+
+void loop()
+{
+  val = analogRead(potpin); //read the value of the potetionmeter
+  val = map(val, 0, 1023, 0, 179); //scale the potentionmeter to work with servo
+  myservo.write(val); //sets the servo position according to value
+  delay(15); //wait for servo to get there
+}
+
